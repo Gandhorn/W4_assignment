@@ -16,6 +16,8 @@ The tidy data set is called my_DF2. It includes the following variables:
   + walkingupstairs
 * 81 variables representing the standard deviation and mean values of the initial features. The following convention is used for naming
 
+Note: all variable have the same unique as the original data (see original CodeBook if needed) as transformation applied (e.g. mean) do not have impact on unit
+
 
 ## Data
 Original data is based on the "Human Activity Recognition Using Smartphones Dataset, Version 1.0". It was downloaded on Feburary 4th, 2021 a the following address: https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip  
