@@ -69,11 +69,14 @@ The previous process has led to the creation of quite many heavy variables. They
 rm(test_DF, test_X, test_Y, test_subject, train_DF, train_X, train_Y, train_subject, features_DF)
 ```
 
+## 2. Extracts only the measurements on the mean and standard deviation for each measurement. 
+
 
 Until now, the data frame includes all original features. It is only necessary to keep the mean/standard deviation values. These are identified based on the feature name which contains eather mean or std, by using the grep function
 ```{r}
 my_DF2 <- my_DF[, c(1,2, grep("mean|std", names(my_DF)))]
 ```
+## 3. Uses descriptive activity names to name the activities in the data set
 
 
 Activity list is created based on information found in original codebook. It is then used to replace original data (coded on integer from 1 to 6) by a descriptive information (e.g. standing", "laying"). This is done using the sapply and a very simple anonymous function
@@ -82,10 +85,16 @@ activity_list <- c("walking", "walkingupstairs", "walkingdownstairs", "sitting",
 my_DF2$activitylabel <- sapply(my_DF2$activitylabel, function(x) {activity_list[x]})
 ```
 
+
+## 4. Appropriately labels the data set with descriptive variable names. 
+
+
 gsub function with a regular expression is used to remove any non alphanumeric caracter of the variables name (e.g. _). Choice is made to keep capital letters which from my point of view improve readability
 ```{r}
 names(my_DF2) <- gsub("[^[:alnum:]]", "", names(my_DF2)) 
 ```
+
+## 5. From the data set in step 4, creates a second, independent tidy data set 
 
 Finally, a summarized dataset is created using dplyr and pipe functionality. First data is grouped based on subject and activity label, then mean values of all variables is calculated. 
 ```{r}
